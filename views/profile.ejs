@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>Powerpuff Pals</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shrikhand">
+  </head>
+  <body>
+    <header>
+      <h1>The Powerpuff Girls Movie</h1>
+    </header>
+    <main>
+      <iframe width="900" height="480" src="https://www.youtube.com/embed/EWWqAsNlXEo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </main>
+    <section class="container">
+      <section class="page-header text-center">
+        <h1><span class="fa fa-users"></span> Powerpuff Pals</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      </section>
+      <section class="row">
+        <section class="col-sm-6">
+          <section class="well">
+            <h3><span class="fa fa-user"></span> Local Pal</h3>
+            <% if (user.local.email) { %>
+            <p>
+              <strong>id</strong>: <%= user._id %><br>
+              <strong>email</strong>: <%= user.local.email %><br>
+              <strong>password</strong>: <%= user.local.password %>
+            </p>
+            <a href="/unlink/local" class="btn btn-default">Delete Account</a>
+            <% } else { %>
+            <a href="/connect/local" class="btn btn-default">Connect Local</a>
+            <% } %>
+          </section>
+        </section>
+        <section class="col-sm-6">
+          <h3>Messages</h3>
+          <ul class="messages">
+          <% for(var i=0; i<messages.length; i++) {%>
+            <li class="message">
+              <span id="username"><%= messages[i].name %></span>
+              <span><%= messages[i].msg %></span>
+              <span><%= messages[i].thumbUp %></span>
+              <span><%= messages[i].trash %></span>
+              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+              <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+            </li>
+          <% } %>
+          </ul>
+          <h2>Leave a comment</h2>
+        <% if (user.local.email) { %>
+          <form action="/messages" method="POST">
+            <input type="text" value="<%= user.local.email %>" name="name">
+            <input type="text" placeholder="message" name="msg">
+            <button type="submit">Comment</button>
+          </form>
+        </section>
+      <% } %>
+    </section>
+  <script src="main.js"></script>
+  </body>
+</html>
