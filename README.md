@@ -1,3 +1,5 @@
+![screenshot of login](https://raw.githubusercontent.com/ehcodes/personal-auth/master/public/img/screenshot.png)
+
 ## Installation
 
 1. Clone repo
